@@ -20,7 +20,7 @@ function Feed() {
 
 
       return (
-        <div>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
             {cards}
         </div>
 

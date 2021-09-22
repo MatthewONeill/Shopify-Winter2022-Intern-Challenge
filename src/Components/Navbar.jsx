@@ -29,16 +29,8 @@ function Navbar() {
         return startDate.getFullYear() + '-' + month + '-' + startDate.getDate();
     }
 
-    const linkTarget = {
-        pathname: `/search/${convertDate()}/${selectedCamera}`,
-        key: uuidv4(),
-        state: {
-            applied: true
-        }
-    };
-
     return (
-        <nav className="py-2sad">
+        <nav className="">
             <div className="max-w-7xl mx-auto left-0 right-0 top-0 bg-white">
                 <div class="flex justify-between h-12 items-center">
                     <div className="text-xl ml-2">
@@ -59,15 +51,15 @@ function Navbar() {
                         </li>
                         <li>
                             <button className="bg-blue-500 text-white rounded-full w-8 h-8">
-                                <Link to={linkTarget}>
+                                <a href={`/search/${convertDate()}/${selectedCamera}`}>
                                     <i className="fa fa-search py-2"></i>
-                                </Link>
+                                </a>
                             </button>
                         </li>
                         <li>
-                            <Link to="/random">
+                            <a href="/random">
                                 <img src="https://img.icons8.com/ios-glyphs/30/000000/dice.png" alt="dice"/>
-                            </Link>
+                            </a>
                         </li>
                     </ul>
 
@@ -87,8 +79,8 @@ function Navbar() {
                             })}
                         </select>
                         <DatePicker className="bg-gray-100 mb-2 ml-2" selected={startDate} onChange={(date) => setStartDate(date)}/>
-                        <div className="mb-2 text-lg ml-2"><Link to={linkTarget}>Search</Link></div>
-                        <div className="mb-2 text-lg ml-2"><Link to="/random">Random</Link></div>
+                        <div className="mb-2 text-lg ml-2"><a href={`/search/${convertDate()}/${selectedCamera}`}>Search</a></div>
+                        <div className="mb-2 text-lg ml-2"><a href="/random">Random</a></div>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
-import { v4 as uuidv4 } from 'uuid';
+
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -32,7 +32,7 @@ function Navbar() {
     return (
         <nav className="">
             <div className="max-w-7xl mx-auto left-0 right-0 top-0 bg-white">
-                <div class="flex justify-between h-12 items-center">
+                <div className="flex justify-between h-12 items-center">
                     <div className="text-xl ml-2">
                         <Link to="/">Spacestagram</Link>
                     </div>

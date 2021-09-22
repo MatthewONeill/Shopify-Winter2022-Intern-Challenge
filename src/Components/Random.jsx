@@ -1,8 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Card from './Card';
-
-const Loader = require('react-loader');
+import Loader from 'react-loader';
 
 
 export default function Random() {
@@ -14,7 +13,7 @@ export default function Random() {
         return <Card key={index} photo={photo}/>
     })
 
-    useEffect(() => {
+    function requestPhotos () {
         const year = Math.floor(Math.random() * (2020 - 2015) + 2015);
         const month = Math.floor(Math.random() * (12 - 1) + 1);
         const day = Math.floor(Math.random() * (28 - 1) + 1);
@@ -27,17 +26,21 @@ export default function Random() {
                 setLoaded(true);
             })
             .catch(err => console.log(err));
+    }
 
-    }, [])
+    useEffect(() => {
+        if (results.length === 0) requestPhotos()
+
+    }, [results])
 
     return(
 
         loaded ?
-        <div className="flex justify-center pt-6">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-              {cards}
-          </div>
-        </div>
+            <div className="flex justify-center pt-6">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
+                {cards}
+            </div>
+            </div>
         :
         <Loader />
     );

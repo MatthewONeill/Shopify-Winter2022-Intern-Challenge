@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Card from './Card';
 import { useParams } from "react-router-dom";
+import Loader from 'react-loader';
 
-const Loader = require('react-loader');
 
 function Feed() {
 
@@ -43,11 +43,11 @@ function Feed() {
       return (
 
         loaded ? 
-        <div className="flex justify-center pt-6">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-              {cards}
+          <div className="flex justify-center pt-6">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
+                {cards}
+            </div>
           </div>
-        </div>
         :
         <Loader />
 

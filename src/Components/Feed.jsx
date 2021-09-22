@@ -43,11 +43,15 @@ function Feed() {
       return (
 
         loaded ? 
+          photos.length !== 0 ? 
           <div className="flex justify-center pt-6">
+            <title>Feed</title>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
                 {cards}
             </div>
           </div>
+          :
+          <div className="text-center text-xl">No results for this date</div>
         :
         <Loader />
 

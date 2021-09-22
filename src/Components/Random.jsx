@@ -37,9 +37,10 @@ export default function Random() {
 
         loaded ?
             <div className="flex justify-center pt-6">
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-                {cards}
-            </div>
+                <title>Random Results</title>
+                <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
+                    {cards}
+                </div>
             </div>
         :
         <Loader />

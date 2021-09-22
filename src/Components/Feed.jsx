@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 function Feed() {
 
-    const { query } = useParams();
+    const { date, camera } = useParams();
 
     const [photos, setPhotos] = useState([]);
 
@@ -14,21 +14,26 @@ function Feed() {
     })
     
     useEffect(() => {
-        if({query}) {
-          axios.get('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=' + query +'&api_key=' + process.env.REACT_APP_NASA_API_KEY)
-          .then(res => {
-            setPhotos(res.data.photos);
-          })
-          .catch(err => console.log(err));
+        let url = "";
+
+        if (date && camera !== "SELECT CAMERA") {
+          url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?page=1&earth_date=' + date +'&camera=' + camera + '&api_key=' + process.env.REACT_APP_NASA_API_KEY;
+        }
+        else if (date) {
+          url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?page=1&earth_date=' + date +'&api_key=' + process.env.REACT_APP_NASA_API_KEY;
         }
         else {
-          axios.get('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&page=1&api_key=' + process.env.REACT_APP_NASA_API_KEY)
+          url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&page=1&api_key=' + process.env.REACT_APP_NASA_API_KEY
+        }
+
+        axios.get(url)
           .then(res => {
             setPhotos(res.data.photos);
           })
           .catch(err => console.log(err));
-        }
-      }, [query]);
+
+        
+      }, [date, camera]);
 
 
       return (
